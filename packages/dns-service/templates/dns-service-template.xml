@@ -29,7 +29,13 @@
           </dns>
         </sys>
 
+        <ip xmlns="http://tail-f.com/ned/cisco-nx">
+          <name-server>
+            <servers>{/dns-server}</servers>
+          </name-server>
+        </ip>
       </config>
     </device>
   </devices>
 </config-template>
+
