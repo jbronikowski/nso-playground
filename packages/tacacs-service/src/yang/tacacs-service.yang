@@ -1,0 +1,65 @@
+module tacacs-service {
+
+  namespace "http://example.com/tacacs-service";
+  prefix tacacs-service;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import tailf-common {
+    prefix tailf;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  description
+    "Bla bla...";
+
+  revision 2016-01-01 {
+    description
+      "Initial revision.";
+  }
+
+  list tacacs-service {
+    tailf:info "This is a Tacacs Service";
+
+    key name;
+    leaf name {
+      tailf:info "Unique service id";
+      tailf:cli-allow-range;
+      type string;
+    }
+
+    uses ncs:service-data;
+    ncs:servicepoint tacacs-service-servicepoint;
+
+    // may replace this with other ways of refering to the devices.
+    leaf-list device {
+      type leafref {
+        path "/ncs:devices/ncs:device/ncs:name";
+      }
+    }
+
+    // replace with your own stuff here
+    
+    list server {
+      tailf:info "Tacacs Servers";
+      key name;
+      leaf name {
+        tailf:info "Unique server name";
+        type string;
+      }
+      leaf ip {
+        tailf:info "Server IPv4 Address";
+        mandatory true;
+        type inet:ipv4-address;
+      }
+      leaf key {
+        tailf:info "Server Key";
+        mandatory true;
+        type string;
+      }
+    }
+  }
+}

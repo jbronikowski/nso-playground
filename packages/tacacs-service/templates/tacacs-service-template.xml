@@ -1,0 +1,31 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+    <device>
+      <name>{/device}</name>
+      <config>
+        <aaa xmlns="urn:ios">
+          <group>
+            <server>
+              <tacacs-plus>
+                <name>{/server/name}</name>
+                <server-private>
+                  <name>{ip}</name>
+                  <key>
+                    <secret>{key}</secret>
+                  </key>
+                </server-private>
+                <ip>
+                  <tacacs>
+                    <source-interface>
+                      <Loopback>0</Loopback>
+                    </source-interface>
+                  </tacacs>
+                </ip>
+              </tacacs-plus>
+            </server>
+          </group>
+        </aaa>
+      </config>
+    </device>
+  </devices>
+</config-template>
