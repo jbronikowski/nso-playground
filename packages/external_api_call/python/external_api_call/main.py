@@ -48,13 +48,13 @@ class ServiceCallbacks(Service):
     # def cb_pre_lock_create(self, tctx, root, service, proplist):
     #     self.log.info('Service plcreate(service=', service._path, ')')
 
-    # @Service.pre_modification
-    # def cb_pre_modification(self, tctx, op, kp, root, proplist):
-    #     self.log.info('Service premod(service=', kp, ')')
+    @Service.pre_modification
+    def cb_pre_modification(self, tctx, op, kp, root, proplist):
+        self.log.info('Service premod(service=', kp, ')')
 
-    # @Service.post_modification
-    # def cb_post_modification(self, tctx, op, kp, root, proplist):
-    #     self.log.info('Service premod(service=', kp, ')')
+    @Service.post_modification
+    def cb_post_modification(self, tctx, op, kp, root, proplist):
+        self.log.info('Service postmod(service=', kp, ')')
 
 
 # ---------------------------------------------
