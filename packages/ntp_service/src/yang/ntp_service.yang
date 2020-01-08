@@ -1,0 +1,34 @@
+module ntp_service {
+  namespace "http://com/example/ntp_service";
+  prefix ntp_service;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  list ntp_service {
+    key name;
+
+    uses ncs:service-data;
+    ncs:servicepoint "ntp_service";
+
+    leaf name {
+      type string;
+    }
+    leaf-list ntp-server {
+       type string {
+       }
+    }
+
+    // may replace this with other ways of refering to the devices.
+    leaf-list device {
+      type leafref {
+        path "/ncs:devices/ncs:device/ncs:name";
+      }
+    }
+
+  }
+}

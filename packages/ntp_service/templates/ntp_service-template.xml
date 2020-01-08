@@ -1,0 +1,34 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0"
+                 servicepoint="ntp_service">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+    <device>
+      <!--
+          Select the devices from some data structure in the service
+          model. In this skeleton the devices are specified in a leaf-list.
+          Select all devices in that leaf-list:
+      -->
+      <name>{/device}</name>
+      <config>
+        <sys xmlns="http://tail-f.com/ned/f5-bigip">
+          <ntp>
+            <servers tags="replace">{/ntp-server}</servers>
+          </ntp>
+        </sys>
+
+        <ntp xmlns="urn:ios">
+          <server>
+            <peer-list>
+              <name>{/ntp-server}</name>
+            </peer-list>
+          </server>
+        </ntp>
+
+        <ntp xmlns="http://tail-f.com/ned/cisco-nx">
+          <server>
+            <id>{/ntp-server}</id>
+          </server>
+        </ntp>
+      </config>
+    </device>
+  </devices>
+</config-template>
